@@ -1158,6 +1158,7 @@ $("#form-kit").addEventListener("submit", async (e) => {
 /* ============ TARJA BLACK FRIDAY ============
    Black Friday = sexta depois da 4ª quinta-feira de novembro. */
 const DIAS_ANTES_TARJA = 60;
+const VELOCIDADE_TARJA = 45; // pixels por segundo: menor = mais devagar
 const TEXTOS_TARJA = [
   "Conectando pessoas e marcas",
   "Sua marca pronta para vender na Black Friday",
@@ -1194,6 +1195,9 @@ function montarTarja() {
   tarja.setAttribute("aria-label", "Black Friday: " + (dias === 0 ? "é hoje" : (dias === 1 ? "falta 1 dia" : "faltam " + dias + " dias")) + ". Conectando pessoas e marcas. Fale comigo para criar sua campanha.");
   tarja.hidden = false;
   document.body.classList.add("com-tarja");
+  // velocidade fixa em pixels por segundo, não importa o tamanho do texto
+  const trilha = $("#tarja-trilha");
+  trilha.style.animationDuration = (trilha.scrollWidth / 2 / VELOCIDADE_TARJA) + "s";
 }
 montarTarja();
 // atualiza a contagem se a página ficar aberta virando o dia
