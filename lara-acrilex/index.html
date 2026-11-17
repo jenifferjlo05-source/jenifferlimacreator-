@@ -193,13 +193,14 @@
   .etapa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .etapa .img.inteira img{object-fit:contain}
   .etapa p{margin-top:10px;font-weight:700;color:var(--roxo);font-size:.95rem;line-height:1.35}
-  .video-projeto{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:36px;align-items:center;margin-top:30px;padding-top:28px;border-top:2px dashed var(--lilas)}
+  .video-projeto{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:56px;align-items:center;max-width:960px;margin:0 auto;position:relative;z-index:1}
   .video-projeto video{width:100%;aspect-ratio:9/16;border-radius:20px;background:var(--roxo);box-shadow:var(--sombra);display:block}
   .video-info .script{font-size:2rem;color:var(--pink);line-height:1}
-  .video-numeros{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
-  .video-numeros li{background:var(--lilas-claro);border-radius:16px;padding:10px 16px;font-size:.85rem;color:var(--texto-suave);font-weight:700}
+  .video-info h2{font-size:clamp(2rem,4vw,2.8rem);color:var(--roxo);margin:6px 0 14px}
+  .video-numeros{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 6px}
+  .video-numeros li{background:#fff;box-shadow:var(--sombra-sm);border-radius:16px;padding:10px 16px;font-size:.85rem;color:var(--texto-suave);font-weight:700}
   .video-numeros b{display:block;font-family:var(--fonte-titulo);font-size:1.7rem;color:var(--pink);line-height:1.1}
-  .video-info p{color:var(--texto-suave);max-width:46ch}
+  .video-info p{color:var(--texto-suave);max-width:46ch;font-size:1.08rem}
   .video-info .btn{margin-top:18px}
 
   /* ---------- 6. Parceria ---------- */
@@ -285,6 +286,9 @@
     .etapas{grid-template-columns:1fr;gap:46px}
     .video-projeto{grid-template-columns:1fr;gap:22px}
     .video-projeto video{max-width:300px;margin:0 auto}
+    .video-info{text-align:center}
+    .video-info p{margin-inline:auto}
+    .video-numeros{justify-content:center}
     .etapa:not(:last-child)::after{right:auto;left:calc(50% - 14px);top:auto;bottom:-38px;transform:rotate(90deg)}
     .trabalho{padding:7px 7px 12px;border-radius:18px}
     .trabalho h3{font-size:.95rem;margin:10px 4px 2px}
@@ -320,7 +324,7 @@
       <ul>
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#proposta">Proposta</a></li>
-        <li><a href="#viral">Viral</a></li>
+        <li><a href="#viral">Vídeos</a></li>
         <li><a href="#trabalhos">Trabalhos</a></li>
         <li><a href="#parceria">Parceria</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -426,6 +430,31 @@
         <p>O vídeo do girassol pintado na parede mostra exatamente o tipo de conteúdo que eu quero fazer com a Acrilex: o processo real, do primeiro traço até a peça pronta.</p>
         <a class="btn btn-branco" href="https://vt.tiktok.com/ZSpGBqhGh/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 3 2.5 5 5.5 5"/></svg>Ver o vídeo no TikTok
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO EU PUBLICO (reel do Instagram) ============ -->
+<section id="reel" aria-labelledby="titulo-reel">
+  <div class="container">
+    <div class="video-projeto revelar">
+      <!-- VÍDEO: arquivo em video/, capa (poster) é a foto do espelho pronto, link do reel no botão -->
+      <video controls playsinline preload="none" poster="fotos/quarto-van-gogh.jpg" aria-label="Reel da transformação da porta e do espelho do estúdio">
+        <source src="video/espelho-do-estudio.mp4" type="video/mp4">
+      </video>
+      <div class="video-info">
+        <span class="script">Como eu publico</span>
+        <h2 id="titulo-reel">A transformação do espelho do meu estúdio</h2>
+        <p>Assim ficam os vídeos no meu Instagram: a peça na cor de fábrica, o processo de pintura e o resultado no final. É nesse formato que a Acrilex apareceria nos meus conteúdos.</p>
+        <ul class="video-numeros">
+          <li><b>4.604</b>visualizações</li>
+          <li><b>381</b>curtidas</li>
+          <li><b>14</b>comentários</li>
+        </ul>
+        <a class="btn btn-pink" href="https://www.instagram.com/reel/Dfpdt0PgrvZ/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg>Ver o reel no Instagram
         </a>
       </div>
     </div>
@@ -587,26 +616,8 @@ const PROJETOS = [
     etapas: [
       { rotulo: "Durante", legenda: "O céu ganhando forma", foto: "fotos/lara-pintando.jpg", alt: "Lara de costas pintando o céu roxo e pink do mural inspirado em Van Gogh, com a parte de baixo ainda só no esboço" },
       { rotulo: "Mural pronto", legenda: "A Noite Estrelada em roxo", foto: FOTOS.vanGogh2, alt: "Parede inteira pintada com a Noite Estrelada em tons de roxo, com lua amarela, cipreste e vilarejo" },
-      { rotulo: "Estúdio pronto", legenda: "Meu espaço de trabalho", foto: "fotos/estudio-pronto.jpg", alt: "Estúdio de tatuagem pronto, com a parede inteira da Noite Estrelada em roxo atrás da mesa de trabalho" }
+      { rotulo: "Estúdio pronto", legenda: "Porta e espelho com moldura lilás", foto: FOTOS.vanGogh, alt: "Estúdio de tatuagem com a parede da Noite Estrelada e a porta de correr roxa com espelho e moldura ondulada lilás pintada com Acrilex" }
     ]
-  },
-  {
-    categoria: "releituras",
-    titulo: "Porta e espelho do estúdio",
-    contexto: "A porta de correr e o espelho vieram na cor de fábrica. Pintei tudo de roxo e lilás para combinar com a Noite Estrelada.",
-    etapas: [
-      { rotulo: "Antes", legenda: "Porta e moldura na cor de fábrica", foto: "fotos/espelho-antes.jpg", alt: "Porta de correr de madeira clara, na cor de fábrica, ao lado da parede da Noite Estrelada" },
-      { rotulo: "Durante", legenda: "Pintando a porta de roxo", foto: "fotos/espelho-pintando-porta.jpg", alt: "Lara em cima de um banquinho pintando a porta de madeira de roxo" },
-      { rotulo: "Durante", legenda: "Pintando a moldura ondulada", foto: "fotos/espelho-pintando-moldura.jpg", alt: "Mão tatuada passando pincel na moldura ondulada roxa do espelho" },
-      { rotulo: "Depois", legenda: "Espelho com moldura lilás", foto: FOTOS.vanGogh, alt: "Porta de correr roxa com espelho e moldura ondulada lilás, ao lado da parede da Noite Estrelada" }
-    ],
-    /* VÍDEO DO PROJETO: arquivo do vídeo, capa, link do post e números */
-    video: {
-      arquivo: "video/espelho-do-estudio.mp4",
-      capa: "video/espelho-capa.jpg",
-      link: "https://www.instagram.com/reel/Dfpdt0PgrvZ/",
-      numeros: [ { n: "4.604", r: "visualizações" }, { n: "381", r: "curtidas" }, { n: "14", r: "comentários" } ]
-    }
   },
   {
     categoria: "gesso",
@@ -695,20 +706,7 @@ $("#projetos").innerHTML = PROJETOS.map(pr => `
         <div class="img${e.inteira ? " inteira" : ""}"><img src="${esc(e.foto)}" alt="${esc(e.alt)}"></div>
         <p>${esc(e.legenda)}</p>
       </li>`).join("")}
-    </ol>${pr.video ? `
-    <div class="video-projeto">
-      <video controls playsinline preload="none" poster="${esc(pr.video.capa)}" aria-label="Vídeo do processo: ${esc(pr.titulo)}">
-        <source src="${esc(pr.video.arquivo)}" type="video/mp4">
-      </video>
-      <div class="video-info">
-        <span class="script">Esse processo virou reel</span>
-        <ul class="video-numeros">${pr.video.numeros.map(x => `<li><b>${esc(x.n)}</b>${esc(x.r)}</li>`).join("")}</ul>
-        <p>Mostrar a transformação do começo ao fim é o que faz as pessoas pararem para assistir. É esse tipo de conteúdo que quero fazer com a Acrilex.</p>
-        <a class="btn btn-pink" href="${esc(pr.video.link)}" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">${ICONES.insta}</svg>Ver o reel no Instagram
-        </a>
-      </div>
-    </div>` : ""}
+    </ol>
   </li>`).join("");
 $("#galeria").innerHTML = TRABALHOS.map(t => `
   <li class="trabalho filtravel" data-cat="${esc(t.categoria)}">
