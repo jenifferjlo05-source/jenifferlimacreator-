@@ -177,6 +177,22 @@
   .trabalho h3{font-size:1.05rem;color:var(--roxo);margin:12px 6px 2px}
   .trabalho p{font-size:.88rem;color:var(--texto-suave);margin:0 6px;line-height:1.4}
   @keyframes surge{from{opacity:0;transform:translateY(12px)}}
+  .sub-galeria{font-size:1.5rem;color:var(--roxo);margin:8px 0 18px;position:relative;z-index:1}
+  .sub-galeria[hidden]{display:none}
+  .projetos{display:grid;gap:28px;margin-bottom:52px;position:relative;z-index:1}
+  .projeto{background:#fff;border-radius:var(--raio);padding:26px 26px 28px;box-shadow:var(--sombra-sm);animation:surge .4s ease both}
+  .projeto[hidden]{display:none}
+  .projeto-topo h3{font-size:1.4rem;color:var(--roxo)}
+  .projeto-topo p{color:var(--texto-suave);margin-top:4px}
+  .etapas{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;margin:20px 0 0;padding:0;list-style:none}
+  .etapa{position:relative}
+  .etapa:not(:last-child)::after{content:"";position:absolute;right:-36px;top:calc(50% - 14px);width:28px;height:28px;border-radius:50%;background:var(--pink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h13M13 6l6 6-6 6'/%3E%3C/svg%3E") center/16px no-repeat;box-shadow:var(--sombra-sm)}
+  .etapa .rotulo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+  .etapa .rotulo b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--amarelo);color:var(--roxo);font-family:var(--fonte-titulo);letter-spacing:0}
+  .etapa .img{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:var(--lilas-claro)}
+  .etapa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .etapa .img.inteira img{object-fit:contain}
+  .etapa p{margin-top:10px;font-weight:700;color:var(--roxo);font-size:.95rem;line-height:1.35}
 
   /* ---------- 6. Parceria ---------- */
   .servicos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1}
@@ -257,6 +273,9 @@
     .numeros-capa span{font-size:.76rem}
     .ideias,.servicos{grid-template-columns:1fr}
     .galeria{grid-template-columns:1fr 1fr;gap:12px}
+    .projeto{padding:20px 16px 22px}
+    .etapas{grid-template-columns:1fr;gap:46px}
+    .etapa:not(:last-child)::after{right:auto;left:calc(50% - 14px);top:auto;bottom:-38px;transform:rotate(90deg)}
     .trabalho{padding:7px 7px 12px;border-radius:18px}
     .trabalho h3{font-size:.95rem;margin:10px 4px 2px}
     .trabalho p{font-size:.8rem;margin:0 4px}
@@ -343,7 +362,7 @@
     <div class="sobre-grade">
       <div class="sobre-foto revelar">
         <!-- FOTOS DO SOBRE: troque os src pelas fotos originais, ex: src="lara-pintando.jpg" -->
-        <div class="foto"><img src="fotos/lara-pintando.jpg" alt="Lara de costas pintando o céu roxo e pink do mural inspirado em Van Gogh"></div>
+        <div class="foto"><img src="fotos/parede-rosa.jpg" alt="Lara pintando uma mandala preta grande em uma parede rosa"></div>
         <div class="mini"><img src="fotos/tintas.jpg" alt="Bancada com dezenas de potes de tinta PVA Acrilex de tampa pink e verde, pincéis e palitos"></div>
       </div>
       <div class="sobre-texto revelar">
@@ -409,10 +428,13 @@
     <div class="cabecalho revelar">
       <span class="script">Portfólio</span>
       <h2 id="titulo-trabalhos">Trabalhos feitos com Acrilex</h2>
-      <p>Escolha uma categoria para ver os trabalhos de cada tipo.</p>
+      <p>Primeiro as transformações completas, na ordem: antes, durante e depois. Em seguida, outros trabalhos. Use os botões para filtrar.</p>
     </div>
     <div class="filtros" id="filtros" role="group" aria-label="Filtrar trabalhos por categoria"></div>
-    <ul class="galeria" id="galeria" aria-live="polite"></ul>
+    <h3 class="sub-galeria" id="titulo-transf">Transformações completas</h3>
+    <ul class="projetos" id="projetos"></ul>
+    <h3 class="sub-galeria" id="titulo-outros">Outros trabalhos</h3>
+    <ul class="galeria" id="galeria"></ul>
   </div>
 </section>
 
@@ -531,7 +553,7 @@ const IDEIAS = [
   { foto: FOTOS.mandala1, titulo: "Mandalas em disco de serrar mármore", texto: "Um disco de obra virando peça de decoração, cor por cor, com timelapse do preenchimento.", formato: "Timelapse + antes e depois" },
   { foto: FOTOS.paredeRosa, titulo: "Murais e portas autorais", texto: "Paredes e portas comuns ganhando mandalas, frases e árvores pintadas à mão.", formato: "Vídeo do processo" },
   { foto: FOTOS.gesso3, titulo: "Reforma de esculturas de gesso", texto: "Peças velhas e descascadas voltando à vida, com a transformação completa.", formato: "Antes e depois" },
-  { foto: FOTOS.vanGogh, titulo: "Releituras de obras famosas", texto: "Um ambiente inteiro inspirado em Van Gogh, até a moldura da porta pintada com Acrilex.", formato: "Série em episódios" }
+  { foto: FOTOS.vanGogh, titulo: "Releituras de obras famosas", texto: "Meu estúdio de tatuagem inteiro inspirado em Van Gogh, até a moldura da porta pintada com Acrilex.", formato: "Série em episódios" }
 ];
 
 /* Categorias dos filtros (a primeira mostra tudo) */
@@ -540,28 +562,56 @@ const CATEGORIAS = [
   { id: "mandalas", nome: "Mandalas" },
   { id: "paredes", nome: "Paredes e portas" },
   { id: "gesso", nome: "Esculturas de gesso" },
-  { id: "releituras", nome: "Releituras" },
+  { id: "releituras", nome: "Estúdio Van Gogh" },
   { id: "customizacao", nome: "Customização" }
 ];
 
-/* Trabalhos da galeria. categoria precisa ser um dos ids acima */
+/* TRANSFORMAÇÕES: projetos mostrados em sequência, na ordem das etapas.
+   categoria precisa ser um dos ids acima.
+   inteira: true mostra a foto inteira, sem cortar (bom para stories com texto) */
+const PROJETOS = [
+  {
+    categoria: "releituras",
+    titulo: "Meu estúdio de tatuagem Van Gogh",
+    contexto: "Releitura da Noite Estrelada que pintei no meu próprio estúdio de tatuagem, da parede até a moldura da porta.",
+    etapas: [
+      { rotulo: "Durante", legenda: "O céu ganhando forma", foto: "fotos/lara-pintando.jpg", alt: "Lara de costas pintando o céu roxo e pink do mural inspirado em Van Gogh, com a parte de baixo ainda só no esboço" },
+      { rotulo: "Mural pronto", legenda: "A Noite Estrelada em roxo", foto: FOTOS.vanGogh2, alt: "Parede inteira pintada com a Noite Estrelada em tons de roxo, com lua amarela, cipreste e vilarejo" },
+      { rotulo: "Estúdio pronto", legenda: "Parede e porta com moldura", foto: FOTOS.vanGogh, alt: "Estúdio de tatuagem com a parede da Noite Estrelada e a porta de correr com moldura ondulada lilás pintada com Acrilex" }
+    ]
+  },
+  {
+    categoria: "gesso",
+    titulo: "Bulldog francês de gesso",
+    contexto: "Uma escultura com a pintura antiga gasta, repintada do zero com tinta PVA Acrilex.",
+    etapas: [
+      { rotulo: "Antes", legenda: "Pintura antiga desgastada", foto: FOTOS.gesso1, alt: "Escultura de bulldog francês com a pintura antiga marrom e cinza, em cima de uma mesa" },
+      { rotulo: "Durante", legenda: "Primeiras camadas de PVA", foto: FOTOS.gesso2, alt: "Escultura de bulldog no meio da pintura, com a testa já branca, ao lado de um pote de tinta PVA Acrilex" },
+      { rotulo: "Depois", legenda: "Preto e branco, olhos brilhando", foto: FOTOS.gesso3, alt: "Escultura de bulldog francês repintada de preto e branco, rodeada de potes de tinta PVA Acrilex" }
+    ]
+  },
+  {
+    categoria: "gesso",
+    titulo: "Namoradeira da minha tia",
+    contexto: "Chegou com roupa preta e acabamento que não me agradava. Repintei para ficar a cara da minha tia.",
+    etapas: [
+      { rotulo: "Antes", legenda: "Como chegou e os testes de cor", foto: FOTOS.namoradeiraProcesso, inteira: true, alt: "Story mostrando a namoradeira de gesso que chegou com roupa preta, os testes de cor da pele e a roupa repintada de vermelho" },
+      { rotulo: "Durante", legenda: "O rosto, antes e depois", foto: FOTOS.namoradeiraRosto, inteira: true, alt: "Comparação do rosto da namoradeira antes e depois: sobrancelhas, olhos castanhos e cabelo amarelo gema repintados" },
+      { rotulo: "Depois", legenda: "Pronta, com acessórios dourados", foto: FOTOS.escultura, inteira: true, alt: "Namoradeira de gesso finalizada, com tranças amarelas, flor vermelha no cabelo, roupa vermelha e acessórios dourados" }
+    ]
+  }
+];
+
+/* OUTROS TRABALHOS: fotos únicas, em cards menores */
 const TRABALHOS = [
+  { categoria: "customizacao", foto: FOTOS.casinha,    titulo: "Casinha da Lua",          texto: "Antes e depois na mesma foto", alt: "Antes e depois da casinha de cachorro: de madeira simples para preta com fases da lua e telhado de galáxia, com a cachorrinha Lua dentro" },
   { categoria: "mandalas",   foto: FOTOS.mandala1,     titulo: "Mandala colorida",        texto: "Disco de serrar mármore", alt: "Mandala colorida em tons de pink, roxo, verde e amarelo pintada em disco de serrar mármore" },
   { categoria: "mandalas",   foto: FOTOS.mandala2,     titulo: "Mandala olho grego",      texto: "Disco de serrar mármore", alt: "Mandala em tons de azul com olho grego no centro, pintada em disco de serrar mármore" },
-  { categoria: "paredes",    foto: FOTOS.paredeRosa,   titulo: "Mandala na parede rosa",  texto: "Mural autoral",           alt: "Lara pintando uma mandala preta grande em uma parede rosa" },
-  { categoria: "paredes",    foto: FOTOS.arvore,       titulo: "Árvore na sala",          texto: "Mural autoral",           alt: "Árvore com folhas verdes pintada em parede branca, com um cachorro sentado em uma poltrona ao lado" },
-  { categoria: "paredes",    foto: FOTOS.floresca,     titulo: "Floresça onde Deus te plantar", texto: "Lettering na parede", alt: "Frase Floresça onde Deus te plantar pintada em parede branca, com flores ao redor" },
-  { categoria: "paredes",    foto: FOTOS.portaMandala, titulo: "Porta com mandala",       texto: "Porta pintada",           alt: "Porta de madeira com mandala preta pintada" },
   { categoria: "paredes",    foto: FOTOS.girassol,     titulo: "Girassol gigante",        texto: "Viralizou no TikTok",     alt: "Mural de girassol gigante pintado em parede laranja" },
-  { categoria: "gesso",      foto: FOTOS.gesso1,       titulo: "Bulldog: antes",          texto: "Escultura de gesso",      alt: "Escultura de bulldog francês com a pintura antiga marrom e cinza, em cima de uma mesa" },
-  { categoria: "gesso",      foto: FOTOS.gesso2,       titulo: "Bulldog: durante",        texto: "Primeiras camadas de PVA", alt: "Escultura de bulldog no meio da pintura, com a testa já branca, ao lado de um pote de tinta PVA Acrilex" },
-  { categoria: "gesso",      foto: FOTOS.gesso3,       titulo: "Bulldog: depois",         texto: "Escultura de gesso",      alt: "Escultura de bulldog francês repintada de preto e branco, rodeada de potes de tinta PVA Acrilex" },
-  { categoria: "gesso",      foto: FOTOS.namoradeiraProcesso, titulo: "Namoradeira: como chegou", texto: "Roupa preta virou vermelha", alt: "Story mostrando a namoradeira de gesso que chegou com roupa preta, os testes de cor da pele e a roupa repintada de vermelho" },
-  { categoria: "gesso",      foto: FOTOS.namoradeiraRosto, titulo: "Namoradeira: o rosto",    texto: "Antes e depois",          alt: "Comparação do rosto da namoradeira antes e depois: sobrancelhas, olhos castanhos e cabelo amarelo gema repintados" },
-  { categoria: "gesso",      foto: FOTOS.escultura,    titulo: "Namoradeira: pronta",     texto: "Com acessórios dourados", alt: "Namoradeira de gesso finalizada, com tranças amarelas, flor vermelha no cabelo, roupa vermelha e acessórios dourados" },
-  { categoria: "releituras", foto: FOTOS.vanGogh,      titulo: "Quarto Van Gogh",         texto: "Parede e porta com moldura", alt: "Parede pintada em roxo com lua amarela inspirada na Noite Estrelada, ao lado de uma porta de correr com moldura ondulada lilás" },
-  { categoria: "releituras", foto: FOTOS.vanGogh2,     titulo: "Noite estrelada",         texto: "Mural inspirado em Van Gogh", alt: "Parede inteira pintada com a Noite Estrelada em tons de roxo, com lua amarela, cipreste e vilarejo" },
-  { categoria: "customizacao", foto: FOTOS.casinha, titulo: "Casinha da Lua", texto: "Antes e depois", alt: "Antes e depois da casinha de cachorro: de madeira simples para preta com fases da lua e telhado de galáxia, com a cachorrinha Lua dentro" }
+  { categoria: "paredes",    foto: FOTOS.paredeRosa,   titulo: "Mandala na parede rosa",  texto: "Durante a pintura",       alt: "Lara pintando uma mandala preta grande em uma parede rosa" },
+  { categoria: "paredes",    foto: FOTOS.portaMandala, titulo: "Porta com mandala",       texto: "Porta pintada",           alt: "Porta de madeira com mandala preta pintada" },
+  { categoria: "paredes",    foto: FOTOS.arvore,       titulo: "Árvore na sala",          texto: "Mural autoral",           alt: "Árvore com folhas verdes pintada em parede branca, com dois cachorros sentados em uma poltrona ao lado" },
+  { categoria: "paredes",    foto: FOTOS.floresca,     titulo: "Floresça onde Deus te plantar", texto: "Lettering na parede", alt: "Frase Floresça onde Deus te plantar pintada em parede branca, com flores ao redor" }
 ];
 
 /* O que a parceria inclui */
@@ -605,18 +655,34 @@ $("#ideias").innerHTML = IDEIAS.map((d, i) => `
     <div class="corpo"><h3>${esc(d.titulo)}</h3><p>${esc(d.texto)}</p><span class="formato">${esc(d.formato)}</span></div>
   </article>`).join("");
 
-const usadas = new Set(TRABALHOS.map(t => t.categoria));
+const usadas = new Set(PROJETOS.concat(TRABALHOS).map(t => t.categoria));
 $("#filtros").innerHTML = CATEGORIAS.filter(c => c.id === "todos" || usadas.has(c.id))
   .map((c, i) => `<button class="filtro" type="button" data-cat="${c.id}" aria-pressed="${i === 0}">${esc(c.nome)}</button>`).join("");
+$("#projetos").innerHTML = PROJETOS.map(pr => `
+  <li class="projeto filtravel" data-cat="${esc(pr.categoria)}">
+    <div class="projeto-topo"><h3>${esc(pr.titulo)}</h3><p>${esc(pr.contexto)}</p></div>
+    <ol class="etapas">${pr.etapas.map((e, i) => `
+      <li class="etapa">
+        <span class="rotulo"><b>${i + 1}</b>${esc(e.rotulo)}</span>
+        <div class="img${e.inteira ? " inteira" : ""}"><img src="${esc(e.foto)}" alt="${esc(e.alt)}"></div>
+        <p>${esc(e.legenda)}</p>
+      </li>`).join("")}
+    </ol>
+  </li>`).join("");
 $("#galeria").innerHTML = TRABALHOS.map(t => `
-  <li class="trabalho" data-cat="${esc(t.categoria)}">
+  <li class="trabalho filtravel" data-cat="${esc(t.categoria)}">
     <div class="img"><img src="${esc(t.foto)}" alt="${esc(t.alt)}"></div>
     <h3>${esc(t.titulo)}</h3><p>${esc(t.texto)}</p>
   </li>`).join("");
+const mostrarTitulos = () => {
+  $("#titulo-transf").hidden = !document.querySelector(".projeto:not([hidden])");
+  $("#titulo-outros").hidden = !document.querySelector(".trabalho:not([hidden])");
+};
 $("#filtros").addEventListener("click", e => {
   const b = e.target.closest(".filtro"); if (!b) return;
   document.querySelectorAll(".filtro").forEach(x => x.setAttribute("aria-pressed", x === b));
-  document.querySelectorAll(".trabalho").forEach(t => { t.hidden = !(b.dataset.cat === "todos" || t.dataset.cat === b.dataset.cat); });
+  document.querySelectorAll(".filtravel").forEach(t => { t.hidden = !(b.dataset.cat === "todos" || t.dataset.cat === b.dataset.cat); });
+  mostrarTitulos();
 });
 
 $("#servicos").innerHTML = SERVICOS.map((s, i) => `
