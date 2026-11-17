@@ -184,7 +184,7 @@
   .projeto[hidden]{display:none}
   .projeto-topo h3{font-size:1.4rem;color:var(--roxo)}
   .projeto-topo p{color:var(--texto-suave);margin-top:4px}
-  .etapas{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;margin:20px 0 0;padding:0;list-style:none}
+  .etapas{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:44px;margin:20px 0 0;padding:0;list-style:none}
   .etapa{position:relative}
   .etapa:not(:last-child)::after{content:"";position:absolute;right:-36px;top:calc(50% - 14px);width:28px;height:28px;border-radius:50%;background:var(--pink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h13M13 6l6 6-6 6'/%3E%3C/svg%3E") center/16px no-repeat;box-shadow:var(--sombra-sm)}
   .etapa .rotulo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
@@ -193,6 +193,14 @@
   .etapa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .etapa .img.inteira img{object-fit:contain}
   .etapa p{margin-top:10px;font-weight:700;color:var(--roxo);font-size:.95rem;line-height:1.35}
+  .video-projeto{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:36px;align-items:center;margin-top:30px;padding-top:28px;border-top:2px dashed var(--lilas)}
+  .video-projeto video{width:100%;aspect-ratio:9/16;border-radius:20px;background:var(--roxo);box-shadow:var(--sombra);display:block}
+  .video-info .script{font-size:2rem;color:var(--pink);line-height:1}
+  .video-numeros{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+  .video-numeros li{background:var(--lilas-claro);border-radius:16px;padding:10px 16px;font-size:.85rem;color:var(--texto-suave);font-weight:700}
+  .video-numeros b{display:block;font-family:var(--fonte-titulo);font-size:1.7rem;color:var(--pink);line-height:1.1}
+  .video-info p{color:var(--texto-suave);max-width:46ch}
+  .video-info .btn{margin-top:18px}
 
   /* ---------- 6. Parceria ---------- */
   .servicos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1}
@@ -275,6 +283,8 @@
     .galeria{grid-template-columns:1fr 1fr;gap:12px}
     .projeto{padding:20px 16px 22px}
     .etapas{grid-template-columns:1fr;gap:46px}
+    .video-projeto{grid-template-columns:1fr;gap:22px}
+    .video-projeto video{max-width:300px;margin:0 auto}
     .etapa:not(:last-child)::after{right:auto;left:calc(50% - 14px);top:auto;bottom:-38px;transform:rotate(90deg)}
     .trabalho{padding:7px 7px 12px;border-radius:18px}
     .trabalho h3{font-size:.95rem;margin:10px 4px 2px}
@@ -577,8 +587,26 @@ const PROJETOS = [
     etapas: [
       { rotulo: "Durante", legenda: "O céu ganhando forma", foto: "fotos/lara-pintando.jpg", alt: "Lara de costas pintando o céu roxo e pink do mural inspirado em Van Gogh, com a parte de baixo ainda só no esboço" },
       { rotulo: "Mural pronto", legenda: "A Noite Estrelada em roxo", foto: FOTOS.vanGogh2, alt: "Parede inteira pintada com a Noite Estrelada em tons de roxo, com lua amarela, cipreste e vilarejo" },
-      { rotulo: "Estúdio pronto", legenda: "Parede e porta com moldura", foto: FOTOS.vanGogh, alt: "Estúdio de tatuagem com a parede da Noite Estrelada e a porta de correr com moldura ondulada lilás pintada com Acrilex" }
+      { rotulo: "Estúdio pronto", legenda: "Meu espaço de trabalho", foto: "fotos/estudio-pronto.jpg", alt: "Estúdio de tatuagem pronto, com a parede inteira da Noite Estrelada em roxo atrás da mesa de trabalho" }
     ]
+  },
+  {
+    categoria: "releituras",
+    titulo: "Porta e espelho do estúdio",
+    contexto: "A porta de correr e o espelho vieram na cor de fábrica. Pintei tudo de roxo e lilás para combinar com a Noite Estrelada.",
+    etapas: [
+      { rotulo: "Antes", legenda: "Porta e moldura na cor de fábrica", foto: "fotos/espelho-antes.jpg", alt: "Porta de correr de madeira clara, na cor de fábrica, ao lado da parede da Noite Estrelada" },
+      { rotulo: "Durante", legenda: "Pintando a porta de roxo", foto: "fotos/espelho-pintando-porta.jpg", alt: "Lara em cima de um banquinho pintando a porta de madeira de roxo" },
+      { rotulo: "Durante", legenda: "Pintando a moldura ondulada", foto: "fotos/espelho-pintando-moldura.jpg", alt: "Mão tatuada passando pincel na moldura ondulada roxa do espelho" },
+      { rotulo: "Depois", legenda: "Espelho com moldura lilás", foto: FOTOS.vanGogh, alt: "Porta de correr roxa com espelho e moldura ondulada lilás, ao lado da parede da Noite Estrelada" }
+    ],
+    /* VÍDEO DO PROJETO: arquivo do vídeo, capa, link do post e números */
+    video: {
+      arquivo: "video/espelho-do-estudio.mp4",
+      capa: "video/espelho-capa.jpg",
+      link: "https://www.instagram.com/reel/Dfpdt0PgrvZ/",
+      numeros: [ { n: "4.604", r: "visualizações" }, { n: "381", r: "curtidas" }, { n: "14", r: "comentários" } ]
+    }
   },
   {
     categoria: "gesso",
@@ -661,13 +689,26 @@ $("#filtros").innerHTML = CATEGORIAS.filter(c => c.id === "todos" || usadas.has(
 $("#projetos").innerHTML = PROJETOS.map(pr => `
   <li class="projeto filtravel" data-cat="${esc(pr.categoria)}">
     <div class="projeto-topo"><h3>${esc(pr.titulo)}</h3><p>${esc(pr.contexto)}</p></div>
-    <ol class="etapas">${pr.etapas.map((e, i) => `
+    <ol class="etapas" style="--n:${pr.etapas.length}">${pr.etapas.map((e, i) => `
       <li class="etapa">
         <span class="rotulo"><b>${i + 1}</b>${esc(e.rotulo)}</span>
         <div class="img${e.inteira ? " inteira" : ""}"><img src="${esc(e.foto)}" alt="${esc(e.alt)}"></div>
         <p>${esc(e.legenda)}</p>
       </li>`).join("")}
-    </ol>
+    </ol>${pr.video ? `
+    <div class="video-projeto">
+      <video controls playsinline preload="none" poster="${esc(pr.video.capa)}" aria-label="Vídeo do processo: ${esc(pr.titulo)}">
+        <source src="${esc(pr.video.arquivo)}" type="video/mp4">
+      </video>
+      <div class="video-info">
+        <span class="script">Esse processo virou reel</span>
+        <ul class="video-numeros">${pr.video.numeros.map(x => `<li><b>${esc(x.n)}</b>${esc(x.r)}</li>`).join("")}</ul>
+        <p>Mostrar a transformação do começo ao fim é o que faz as pessoas pararem para assistir. É esse tipo de conteúdo que quero fazer com a Acrilex.</p>
+        <a class="btn btn-pink" href="${esc(pr.video.link)}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">${ICONES.insta}</svg>Ver o reel no Instagram
+        </a>
+      </div>
+    </div>` : ""}
   </li>`).join("");
 $("#galeria").innerHTML = TRABALHOS.map(t => `
   <li class="trabalho filtravel" data-cat="${esc(t.categoria)}">
